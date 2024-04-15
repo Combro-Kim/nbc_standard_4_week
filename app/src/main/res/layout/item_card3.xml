@@ -8,7 +8,7 @@
     android:backgroundTint="@color/card3">
 
     <TextView
-        android:id="@+id/tvName1"
+        android:id="@+id/tvName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
@@ -25,12 +25,12 @@
         android:text="A Debit Card"
         android:textColor="@color/white"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@id/tvName1"
+        app:layout_constraintBottom_toBottomOf="@id/tvName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tvName1" />
+        app:layout_constraintTop_toTopOf="@id/tvName" />
 
     <TextView
-        android:id="@+id/tvCardNum1_1"
+        android:id="@+id/tvCardNum1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
@@ -39,11 +39,11 @@
         android:textSize="23sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvName1"
+        app:layout_constraintTop_toBottomOf="@id/tvName"
         tool:text="2423" />
 
     <TextView
-        android:id="@+id/tvCardNum1_2"
+        android:id="@+id/tvCardNum2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
@@ -51,12 +51,12 @@
         android:textColor="@color/white"
         android:textSize="23sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@id/tvCardNum1_1"
-        app:layout_constraintTop_toBottomOf="@id/tvName1"
+        app:layout_constraintStart_toEndOf="@id/tvCardNum1"
+        app:layout_constraintTop_toBottomOf="@id/tvName"
         tool:text="2423" />
 
     <TextView
-        android:id="@+id/tvCardNum1_3"
+        android:id="@+id/tvCardNum3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
@@ -64,12 +64,12 @@
         android:textColor="@color/white"
         android:textSize="23sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@id/tvCardNum1_2"
-        app:layout_constraintTop_toBottomOf="@id/tvName1"
+        app:layout_constraintStart_toEndOf="@id/tvCardNum2"
+        app:layout_constraintTop_toBottomOf="@id/tvName"
         tool:text="2423" />
 
     <TextView
-        android:id="@+id/tvCardNum1_4"
+        android:id="@+id/tvCardNum4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
@@ -77,23 +77,23 @@
         android:textColor="@color/white"
         android:textSize="23sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@id/tvCardNum1_3"
-        app:layout_constraintTop_toBottomOf="@id/tvName1"
+        app:layout_constraintStart_toEndOf="@id/tvCardNum3"
+        app:layout_constraintTop_toBottomOf="@id/tvName"
         tool:text="2423" />
 
     <TextView
-        android:id="@+id/tvYM1"
+        android:id="@+id/tvYM"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="13dp"
         android:textColor="@color/white"
-        android:textSize="23sp"
+        android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/tvCardNum1_4"
+        app:layout_constraintBottom_toBottomOf="@id/tvCardNum1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tvCardNum1_4"
+        app:layout_constraintTop_toTopOf="@id/tvCardNum1"
         tool:text="21 / 24" />
 
 
@@ -102,8 +102,8 @@
         android:layout_height="wrap_content"
         android:text="Your Balance"
         android:textColor="@color/white"
-        app:layout_constraintStart_toStartOf="@id/tvCardNum1_1"
-        app:layout_constraintTop_toBottomOf="@id/tvCardNum1_4" />
+        app:layout_constraintStart_toStartOf="@id/tvCardNum1"
+        app:layout_constraintTop_toBottomOf="@id/tvCardNum1" />
 
     <TextView
         android:id="@+id/won"
@@ -115,9 +115,10 @@
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@id/tvCardNum1_1" />
+        app:layout_constraintStart_toStartOf="@id/tvCardNum1" />
 
     <TextView
+        android:id="@+id/tvPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
@@ -135,7 +136,8 @@
         android:textColor="@color/white"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@id/won"
-        app:layout_constraintEnd_toEndOf="@id/tvYM1" />
+        app:layout_constraintEnd_toEndOf="@id/tvYM" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

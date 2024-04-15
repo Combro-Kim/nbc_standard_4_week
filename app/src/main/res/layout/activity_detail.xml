@@ -7,4 +7,42 @@
     android:layout_height="match_parent"
     tools:context=".DetailActivity">
 
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:layout_marginTop="50dp"
+        android:textSize="30sp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="이름" />
+
+    <TextView
+        android:id="@+id/tvNum"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:textSize="30sp"
+        app:layout_constraintTop_toBottomOf="@id/tvName"
+        tools:text="카드번호" />
+
+    <TextView
+        android:id="@+id/tvYM"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:textSize="30sp"
+        app:layout_constraintTop_toBottomOf="@id/tvNum"
+        tools:text="21 / 24" />
+
+    <TextView
+        android:id="@+id/tvPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:textSize="30sp"
+        app:layout_constraintTop_toBottomOf="@id/tvYM"
+        tools:text="3,121.11" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
