@@ -15,6 +15,10 @@ import com.example.nbc_standard_4_week.presentation.viewModel.MainViewModel
 import com.example.nbc_standard_4_week.presentation.viewModel.MainViewModelFactory
 import com.example.nbc_standard_4_week.presentation.adapter.DataAdapter
 
+// todo 주석달기
+// todo RecyclerView LiveData로 변경
+// todo DetailActivity 데이터 ViewModel에서 받기
+
 class MainActivity : AppCompatActivity() {
     private val binding: ActivityMainBinding by lazy {
         ActivityMainBinding.inflate(layoutInflater)
@@ -59,12 +63,13 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
             }
         }*/
+        //RecyclerView item 선택
         adapter.itemClick = object : DataAdapter.ItemClick{
             override fun onClick(view: View, position: Int) {
                 mainViewModel.onItemSelected(position)
             }
         }
-        mainViewModel.navigateToDetail.observe(this){
+        mainViewModel.selectedDataId.observe(this){
             val intent = Intent(this,DetailActivity::class.java).apply {
                 putExtra("selectedItemId",it)
             }
@@ -89,7 +94,7 @@ class MainActivity : AppCompatActivity() {
 //        val decimal = DecimalFormat("#,##,###.00")
 //        binding.tvDollar.text = decimal.format(totalPrice)
 
-        ////Live Data로 변경
+        //Live Data로 변경
         mainViewModel.totalPrice.observe(this) {
             tvDollar.text = it
         }

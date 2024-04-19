@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.nbc_standard_4_week.data.Data
 import com.example.nbc_standard_4_week.data.DataSource
 import com.example.nbc_standard_4_week.data.dataList
 import java.text.DecimalFormat
@@ -25,10 +24,10 @@ class MainViewModel(val dataSource: DataSource) : ViewModel() {
     val dataLiveData = dataSource.getDataList()
 
     // id값 넘기기
-    private val _navigateToDetail = MutableLiveData<Int>()
-    val navigateToDetail: LiveData<Int> get() = _navigateToDetail
-    fun onItemSelected(id:Int){
-        _navigateToDetail.value = id
+    private val _selectedDataId = MutableLiveData<Int>()
+    val selectedDataId: LiveData<Int> get() = _selectedDataId
+    fun onItemSelected(id: Int) {
+        _selectedDataId.value = id
     }
 }
 

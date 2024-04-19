@@ -25,8 +25,8 @@ class DetailActivity : AppCompatActivity() {
         initView()
     }
 
-    @SuppressLint("SetTextI18n") // 변경하라면 하겠습니다.
-    private fun initView() {
+    @SuppressLint("SetTextI18n")
+    private fun initView() { // todo ViewModel에서 받아오기
         val selectedItemId = intent.getIntExtra(SELECTED_DATA, -1)
         val eachData = detailViewModel.getDataForId(selectedItemId)
         binding.tvName.text = eachData?.tvName
