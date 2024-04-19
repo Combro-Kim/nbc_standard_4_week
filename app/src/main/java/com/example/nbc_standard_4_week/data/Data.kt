@@ -5,12 +5,13 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Data(
-    val type:ViewType,
+    val id: Int,
+    val type: ViewType,
     val tvName: String,
-    val num1:Int,
-    val num2:Int,
+    val num1: Int,
+    val num2: Int,
     val num3: Int,
     val num4: Int,
     val YM: String,
     val price: Double
-):Parcelable
+) : Parcelable

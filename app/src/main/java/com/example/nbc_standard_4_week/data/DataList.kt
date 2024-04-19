@@ -14,6 +14,7 @@ const val item_card3 = 3*/
 fun dataList(): MutableList<Data> {
     return mutableListOf(
         Data(
+            id = 0,
             type = ViewType.CARD1,
             tvName = "Anderson",
             num1 = 2423,
@@ -24,6 +25,7 @@ fun dataList(): MutableList<Data> {
             price = 3100.30
         ),
         Data(
+            id = 1,
             type = ViewType.CARD2,
             tvName = "John",
             num1 = 1234,
@@ -34,6 +36,7 @@ fun dataList(): MutableList<Data> {
             price = 2459.60
         ),
         Data(
+            id = 2,
             type = ViewType.CARD3,
             tvName = "Mash",
             num1 = 4564,

@@ -1,7 +1,7 @@
 package com.example.nbc_standard_4_week.data
 
-class DataSource { //todo SingleTon 이해
-    private var dataList: MutableList<Data> = dataList()
+class DataSource {
+//    private var dataList: MutableList<Data> = dataList()
 
     companion object {
         private var INSTANCE: DataSource? = null
@@ -15,7 +15,7 @@ class DataSource { //todo SingleTon 이해
     }
 
     fun getDataList(): MutableList<Data> {
-        return dataList
+        return dataList()
     }
 }
 

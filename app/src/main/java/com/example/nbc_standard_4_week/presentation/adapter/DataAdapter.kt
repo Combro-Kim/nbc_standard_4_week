@@ -1,18 +1,17 @@
-package com.example.nbc_standard_4_week.presentation
+package com.example.nbc_standard_4_week.presentation.adapter
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.nbc_standard_4_week.presentation.viewholder.Card1ViewHolder
-import com.example.nbc_standard_4_week.presentation.viewholder.Card2ViewHolder
-import com.example.nbc_standard_4_week.presentation.viewholder.Card3ViewHolder
 import com.example.nbc_standard_4_week.data.Data
 import com.example.nbc_standard_4_week.data.ViewType
-import com.example.nbc_standard_4_week.data.dataList
 import com.example.nbc_standard_4_week.databinding.ItemCard1Binding
 import com.example.nbc_standard_4_week.databinding.ItemCard2Binding
 import com.example.nbc_standard_4_week.databinding.ItemCard3Binding
+import com.example.nbc_standard_4_week.presentation.adapter.viewholder.Card1ViewHolder
+import com.example.nbc_standard_4_week.presentation.adapter.viewholder.Card2ViewHolder
+import com.example.nbc_standard_4_week.presentation.adapter.viewholder.Card3ViewHolder
 
 class DataAdapter(private val data: MutableList<Data>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -32,7 +31,7 @@ class DataAdapter(private val data: MutableList<Data>) : RecyclerView.Adapter<Re
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 //        val view: View?
-        return when (viewType) { //todo sealed class -> else 제거해보기
+        return when (viewType) {
             ViewType.CARD1.viewType-> {
                 val binding = ItemCard1Binding.inflate(LayoutInflater.from(parent.context), parent, false)
                 Card1ViewHolder(binding)
@@ -58,7 +57,7 @@ class DataAdapter(private val data: MutableList<Data>) : RecyclerView.Adapter<Re
         when (holder.itemViewType) {
             ViewType.CARD1.viewType -> {
                 (holder as Card1ViewHolder).bind(data[position])
-                holder.setIsRecyclable(false)
+//                holder.setIsRecyclable(false)
                 holder.itemView.setOnClickListener {
                     itemClick?.onClick(it,position)
                 }
@@ -66,7 +65,7 @@ class DataAdapter(private val data: MutableList<Data>) : RecyclerView.Adapter<Re
 
             ViewType.CARD2.viewType -> {
                 (holder as Card2ViewHolder).bind(data[position])
-                holder.setIsRecyclable(false)
+//                holder.setIsRecyclable(false)
                 holder.itemView.setOnClickListener {
                     itemClick?.onClick(it,position)
                 }
@@ -74,7 +73,7 @@ class DataAdapter(private val data: MutableList<Data>) : RecyclerView.Adapter<Re
 
             ViewType.CARD3.viewType -> {
                 (holder as Card3ViewHolder).bind(data[position])
-                holder.setIsRecyclable(false)
+//                holder.setIsRecyclable(false)
                 holder.itemView.setOnClickListener {
                     itemClick?.onClick(it,position)
                 }
