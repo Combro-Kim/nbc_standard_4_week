@@ -1,41 +1,44 @@
-package com.example.nbc_standard_4_week.adapter
+package com.example.nbc_standard_4_week.presentation
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.nbc_standard_4_week.adapter.viewholder.Card1ViewHolder
-import com.example.nbc_standard_4_week.adapter.viewholder.Card2ViewHolder
-import com.example.nbc_standard_4_week.adapter.viewholder.Card3ViewHolder
+import com.example.nbc_standard_4_week.presentation.viewholder.Card1ViewHolder
+import com.example.nbc_standard_4_week.presentation.viewholder.Card2ViewHolder
+import com.example.nbc_standard_4_week.presentation.viewholder.Card3ViewHolder
 import com.example.nbc_standard_4_week.data.Data
-import com.example.nbc_standard_4_week.data.item_card1
-import com.example.nbc_standard_4_week.data.item_card2
-import com.example.nbc_standard_4_week.data.item_card3
+import com.example.nbc_standard_4_week.data.ViewType
+import com.example.nbc_standard_4_week.data.dataList
 import com.example.nbc_standard_4_week.databinding.ItemCard1Binding
 import com.example.nbc_standard_4_week.databinding.ItemCard2Binding
 import com.example.nbc_standard_4_week.databinding.ItemCard3Binding
 
 class DataAdapter(private val data: MutableList<Data>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-
     interface ItemClick{
         fun onClick(view:View, position: Int)
     }
-    var itemClick:ItemClick? = null
+    var itemClick: ItemClick? = null
 
 
     override fun getItemViewType(position: Int): Int {
-        return data[position].type
+        return when(position){
+            0 -> ViewType.CARD1.viewType
+            1 -> ViewType.CARD2.viewType
+            2 -> ViewType.CARD3.viewType
+            else -> throw IllegalAccessException("Invalid position")
+        }
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val view: View?
+//        val view: View?
         return when (viewType) { //todo sealed class -> else 제거해보기
-            item_card1 -> {
+            ViewType.CARD1.viewType-> {
                 val binding = ItemCard1Binding.inflate(LayoutInflater.from(parent.context), parent, false)
                 Card1ViewHolder(binding)
             }
 
-            item_card2 -> {
+            ViewType.CARD2.viewType -> {
                 val binding = ItemCard2Binding.inflate(LayoutInflater.from(parent.context), parent, false)
                 Card2ViewHolder(binding)
             }
@@ -52,18 +55,16 @@ class DataAdapter(private val data: MutableList<Data>) : RecyclerView.Adapter<Re
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        when (data[position].type) {
-            item_card1 -> {
+        when (holder.itemViewType) {
+            ViewType.CARD1.viewType -> {
                 (holder as Card1ViewHolder).bind(data[position])
                 holder.setIsRecyclable(false)
                 holder.itemView.setOnClickListener {
                     itemClick?.onClick(it,position)
                 }
-
-
             }
 
-            item_card2 -> {
+            ViewType.CARD2.viewType -> {
                 (holder as Card2ViewHolder).bind(data[position])
                 holder.setIsRecyclable(false)
                 holder.itemView.setOnClickListener {
@@ -71,7 +72,7 @@ class DataAdapter(private val data: MutableList<Data>) : RecyclerView.Adapter<Re
                 }
             }
 
-            else -> { //item_card3
+            ViewType.CARD3.viewType -> {
                 (holder as Card3ViewHolder).bind(data[position])
                 holder.setIsRecyclable(false)
                 holder.itemView.setOnClickListener {

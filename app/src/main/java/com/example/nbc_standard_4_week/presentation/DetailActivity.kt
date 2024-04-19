@@ -1,33 +1,24 @@
-package com.example.nbc_standard_4_week
+package com.example.nbc_standard_4_week.presentation
 
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.example.nbc_standard_4_week.data.Data
 import com.example.nbc_standard_4_week.databinding.ActivityDetailBinding
 import java.text.DecimalFormat
 
 class DetailActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityDetailBinding
+    private val binding : ActivityDetailBinding by lazy {
+        ActivityDetailBinding.inflate(layoutInflater)
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
-        binding = ActivityDetailBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(binding.root)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
 
         val selectedData = intent.getParcelableExtra("selectedData", Data::class.java)
         selectedData?.let { eachData(it) }
         Log.d("DetailActivity", "Received data: $selectedData")
-
 
     }
 

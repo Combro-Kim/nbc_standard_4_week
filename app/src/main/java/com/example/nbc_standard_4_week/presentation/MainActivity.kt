@@ -1,38 +1,50 @@
-package com.example.nbc_standard_4_week
+package com.example.nbc_standard_4_week.presentation
 
 import android.content.Intent
 import android.graphics.Rect
 import android.os.Bundle
 import android.view.View
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ItemDecoration
-import com.example.nbc_standard_4_week.adapter.DataAdapter
+import com.example.nbc_standard_4_week.data.DataSource
 import com.example.nbc_standard_4_week.data.dataList
 import com.example.nbc_standard_4_week.databinding.ActivityMainBinding
 import java.text.DecimalFormat
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityMainBinding
+    private val binding : ActivityMainBinding by lazy {
+        ActivityMainBinding.inflate(layoutInflater)
+    }
+    private var dataSource = DataSource.getDataSource()
+    private lateinit var adapter: DataAdapter
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
-        binding = ActivityMainBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(binding.root)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+
         showTotalPrice()
         recyclerViewDivider()
         initRecyclerView()
 
 
+    }
+    private fun initRecyclerView() {
+//        val adapter = DataAdapter(dataSource.getDataList())
+        adapter = DataAdapter(dataSource.getDataList())
+        binding.recyclerView.adapter = adapter
+        binding.recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+
+        adapter.itemClick = object : DataAdapter.ItemClick {
+            override fun onClick(view: View, position: Int) {
+                val selectedData = dataSource.getDataList()[position]
+                val intent = Intent(this@MainActivity, DetailActivity::class.java)
+                intent.putExtra("selectedData", selectedData)
+                startActivity(intent)
+            }
+        }
     }
 
     //item 간격 추가
@@ -44,23 +56,6 @@ class MainActivity : AppCompatActivity() {
             }
         })
     }
-
-    private fun initRecyclerView() {
-        val adapter = DataAdapter(dataList())
-        val dataList = dataList()
-        binding.recyclerView.adapter = adapter
-        binding.recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-
-        adapter.itemClick = object : DataAdapter.ItemClick {
-            override fun onClick(view: View, position: Int) {
-                val selectedData = dataList[position]
-                val intent = Intent(this@MainActivity, DetailActivity::class.java)
-                intent.putExtra("selectedData", selectedData)
-                startActivity(intent)
-            }
-        }
-    }
-
     private fun showTotalPrice() {
         val totalPrice = dataList().sumOf { it.price }
         val decimal = DecimalFormat("#,##,###.00")
