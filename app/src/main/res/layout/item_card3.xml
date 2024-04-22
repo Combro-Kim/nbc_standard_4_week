@@ -43,45 +43,6 @@
         tool:text="2423" />
 
     <TextView
-        android:id="@+id/tvCardNum2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="5dp"
-        android:textColor="@color/white"
-        android:textSize="23sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@id/tvCardNum1"
-        app:layout_constraintTop_toBottomOf="@id/tvName"
-        tool:text="2423" />
-
-    <TextView
-        android:id="@+id/tvCardNum3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="5dp"
-        android:textColor="@color/white"
-        android:textSize="23sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@id/tvCardNum2"
-        app:layout_constraintTop_toBottomOf="@id/tvName"
-        tool:text="2423" />
-
-    <TextView
-        android:id="@+id/tvCardNum4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="5dp"
-        android:textColor="@color/white"
-        android:textSize="23sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@id/tvCardNum3"
-        app:layout_constraintTop_toBottomOf="@id/tvName"
-        tool:text="2423" />
-
-    <TextView
         android:id="@+id/tvYM"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

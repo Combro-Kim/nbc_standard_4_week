@@ -57,7 +57,6 @@ class DataAdapter(private val data: MutableList<Data>) : RecyclerView.Adapter<Re
         when (holder.itemViewType) {
             ViewType.CARD1.viewType -> {
                 (holder as Card1ViewHolder).bind(data[position])
-//                holder.setIsRecyclable(false)
                 holder.itemView.setOnClickListener {
                     itemClick?.onClick(it,position)
                 }
@@ -65,7 +64,6 @@ class DataAdapter(private val data: MutableList<Data>) : RecyclerView.Adapter<Re
 
             ViewType.CARD2.viewType -> {
                 (holder as Card2ViewHolder).bind(data[position])
-//                holder.setIsRecyclable(false)
                 holder.itemView.setOnClickListener {
                     itemClick?.onClick(it,position)
                 }
@@ -73,7 +71,6 @@ class DataAdapter(private val data: MutableList<Data>) : RecyclerView.Adapter<Re
 
             ViewType.CARD3.viewType -> {
                 (holder as Card3ViewHolder).bind(data[position])
-//                holder.setIsRecyclable(false)
                 holder.itemView.setOnClickListener {
                     itemClick?.onClick(it,position)
                 }

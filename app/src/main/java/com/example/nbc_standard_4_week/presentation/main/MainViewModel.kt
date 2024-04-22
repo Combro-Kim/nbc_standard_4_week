@@ -1,4 +1,4 @@
-package com.example.nbc_standard_4_week.presentation.viewModel
+package com.example.nbc_standard_4_week.presentation.main
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -23,7 +23,7 @@ class MainViewModel(val dataSource: DataSource) : ViewModel() {
 
     val dataLiveData = dataSource.getDataList()
 
-    // id값 넘기기
+    // id
     private val _selectedDataId = MutableLiveData<Int>()
     val selectedDataId: LiveData<Int> get() = _selectedDataId
     fun onItemSelected(id: Int) {

@@ -1,4 +1,4 @@
-package com.example.nbc_standard_4_week.presentation.activity
+package com.example.nbc_standard_4_week.presentation.main
 
 import android.content.Intent
 import android.graphics.Rect
@@ -11,8 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ItemDecoration
 import com.example.nbc_standard_4_week.databinding.ActivityMainBinding
-import com.example.nbc_standard_4_week.presentation.viewModel.MainViewModel
-import com.example.nbc_standard_4_week.presentation.viewModel.MainViewModelFactory
+import com.example.nbc_standard_4_week.presentation.detail.DetailActivity
 import com.example.nbc_standard_4_week.presentation.adapter.DataAdapter
 
 // todo 주석달기
@@ -31,7 +30,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var adapter: DataAdapter
 
 
-    //Live Data실습 (총금액 변경해보기)
+    //price
     private val tvDollar: TextView by lazy {
         binding.tvDollar
     }
@@ -70,7 +69,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
         mainViewModel.selectedDataId.observe(this){
-            val intent = Intent(this,DetailActivity::class.java).apply {
+            val intent = Intent(this, DetailActivity::class.java).apply {
                 putExtra("selectedItemId",it)
             }
             startActivity(intent)

@@ -9,13 +9,13 @@ class Card3ViewHolder(private val binding: ItemCard3Binding) : RecyclerView.View
     fun bind(data: Data){
         binding.apply {
             tvName.text = data.tvName
-            tvCardNum1.text = data.num1.toString()
-            tvCardNum2.text = data.num2.toString()
-            tvCardNum3.text = data.num3.toString()
-            tvCardNum4.text = data.num4.toString()
+            tvCardNum1.text = data.num1.chunked(4).joinToString(" ")
             tvYM.text = data.YM
             val decimal = DecimalFormat("#,##,###.00")
             tvPrice.text = decimal.format(data.price)
         }
+    }
+    private fun addSpaceToText(input: String): String {
+        return input.chunked(4).joinToString(" ")
     }
 }
