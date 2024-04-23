@@ -1,16 +1,5 @@
 package com.example.nbc_standard_4_week.data
 
-/*//DataMode
-const val item_card1 = 1
-const val item_card2 = 2
-const val item_card3 = 3*/
-
-/*enum class ViewType(type: String) {
-    CARD1("card1"),
-    CARD2("card2"),
-    CARD3("card3")
-}*/
-
 fun dataList(): MutableList<Data> {
     return mutableListOf(
         Data(

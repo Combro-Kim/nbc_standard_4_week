@@ -29,6 +29,4 @@ class DetailViewModel : ViewModel() {
             list.find { it.id == id }
         }
     }*/
-
-
 }

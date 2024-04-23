@@ -4,6 +4,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.nbc_standard_4_week.data.Data
 import com.example.nbc_standard_4_week.databinding.ItemCard1Binding
 import java.text.DecimalFormat
+//다른 데이터 구조일 경우도 있을까봐 만들었습니다.
 
 class Card1ViewHolder(private val binding: ItemCard1Binding) : RecyclerView.ViewHolder(binding.root) {
     fun bind(data: Data){

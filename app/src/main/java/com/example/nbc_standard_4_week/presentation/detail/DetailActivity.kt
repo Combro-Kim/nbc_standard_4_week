@@ -1,6 +1,5 @@
 package com.example.nbc_standard_4_week.presentation.detail
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -23,7 +22,7 @@ class DetailActivity : AppCompatActivity() {
         initView()
     }
 
-    @SuppressLint("SetTextI18n")
+
     private fun initView() { // todo ViewModel에서 받아오기
         val selectedItemId = intent.getIntExtra(SELECTED_DATA, -1)
         val eachData = detailViewModel.getDataForId(selectedItemId)

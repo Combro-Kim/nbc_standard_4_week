@@ -1,8 +1,6 @@
 package com.example.nbc_standard_4_week.data
 
 class DataSource {
-//    private var dataList: MutableList<Data> = dataList()
-
     companion object {
         private var INSTANCE: DataSource? = null
         fun getDataSource(): DataSource {
