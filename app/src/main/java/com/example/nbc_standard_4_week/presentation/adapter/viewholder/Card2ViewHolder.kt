@@ -1,22 +1,20 @@
 package com.example.nbc_standard_4_week.presentation.adapter.viewholder
 
 import androidx.recyclerview.widget.RecyclerView
-import com.example.nbc_standard_4_week.data.Data
+import com.example.nbc_standard_4_week.data.entity.DataEntity
 import com.example.nbc_standard_4_week.databinding.ItemCard2Binding
+import com.example.nbc_standard_4_week.presentation.model.DataModel
 import java.text.DecimalFormat
 
 class Card2ViewHolder(private val binding: ItemCard2Binding) : RecyclerView.ViewHolder(binding.root) {
-    fun bind(data: Data) {
+    fun bind(dataEntity: DataModel) {
         binding.apply {
-            tvName.text = data.tvName
-            tvCardNum1.text = data.num1.chunked(4).joinToString(" ")
-            tvYM.text = data.YM
+            tvName.text = dataEntity.tvName
+            tvCardNum1.text = dataEntity.num1.chunked(4).joinToString(" ")
+            tvYM.text = dataEntity.YM
             val decimal = DecimalFormat("#,##,###.00")
-            tvPrice.text = decimal.format(data.price)
+            tvPrice.text = decimal.format(dataEntity.price)
         }
     }
 
-    private fun addSpaceToText(input: String): String {
-        return input.chunked(4).joinToString(" ")
-    }
 }

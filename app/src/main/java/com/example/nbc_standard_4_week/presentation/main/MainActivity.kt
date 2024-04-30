@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView.ItemDecoration
 import com.example.nbc_standard_4_week.databinding.ActivityMainBinding
 import com.example.nbc_standard_4_week.presentation.detail.DetailActivity
 import com.example.nbc_standard_4_week.presentation.adapter.DataAdapter
+import com.example.nbc_standard_4_week.presentation.model.DataModel
 
 // todo 주석달기
 // todo RecyclerView LiveData로 변경
@@ -29,7 +30,12 @@ class MainActivity : AppCompatActivity() {
     //ViewModel에서 받아오기 때문에 여기서 사용 안함
     //    private var dataSource = DataSource.getDataSource()
 
-    private lateinit var adapter: DataAdapter
+    private val dataAdapter: DataAdapter by lazy {
+        DataAdapter { card ->
+            adapterOnClick(card)
+        }
+    }
+    private lateinit var dataList: List<DataModel>
 
     //price
     private val tvDollar: TextView by lazy {
@@ -43,35 +49,9 @@ class MainActivity : AppCompatActivity() {
 
         showTotalPrice()
         recyclerViewDivider()
-        initRecyclerView()
-    }
 
-    private fun initRecyclerView() {
-        val dataList = mainViewModel.dataLiveData
-        adapter = DataAdapter(dataList)
-        binding.recyclerView.adapter = adapter
-        binding.recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-
-/*        adapter.itemClick = object : DataAdapter.ItemClick {
-            override fun onClick(view: View, position: Int) {
-                val selectedData = mainViewModel.getDataForId(position)
-                val intent = Intent(this@MainActivity, DetailActivity::class.java)
-                intent.putExtra("extra_data", selectedData)
-                startActivity(intent)
-            }
-        }*/
-        //RecyclerView item 선택
-        adapter.itemClick = object : DataAdapter.ItemClick{
-            override fun onClick(view: View, position: Int) {
-                mainViewModel.onItemSelected(position)
-            }
-        }
-        mainViewModel.selectedDataId.observe(this){
-            val intent = Intent(this, DetailActivity::class.java).apply {
-                putExtra("selectedItemId",it)
-            }
-            startActivity(intent)
-        }
+        initViewModel()
+        initData()
     }
 
     //item 간격 추가
@@ -86,15 +66,37 @@ class MainActivity : AppCompatActivity() {
 
     //Live Data실습 (총금액 변경해보기)
     private fun showTotalPrice() {
-        //기존 코드
-//        val totalPrice = dataList().sumOf { it.price }
-//        val decimal = DecimalFormat("#,##,###.00")
-//        binding.tvDollar.text = decimal.format(totalPrice)
-
-        //Live Data로 변경
         mainViewModel.totalPrice.observe(this) {
             tvDollar.text = it
         }
         mainViewModel.updateTotalPrice()
+    }
+
+    private fun initData(){
+        mainViewModel.getDataModel()
+    }
+    private fun initView(){
+        dataAdapter.dataList = dataList
+        with(binding.recyclerView){
+            adapter = dataAdapter
+            layoutManager = LinearLayoutManager(this@MainActivity)
+        }
+    }
+
+    private fun initViewModel(){
+        mainViewModel.getDataModel.observe(this@MainActivity){
+            dataList = it
+
+            initView()
+        }
+    }
+
+    private fun adapterOnClick(card : DataModel){
+        val intent = Intent(this, DetailActivity::class.java)
+        val bundle = Bundle().apply {
+            putParcelable(DetailActivity.SELECTED_DATA,card)
+        }
+        intent.putExtras(bundle)
+        startActivity(intent)
     }
 }

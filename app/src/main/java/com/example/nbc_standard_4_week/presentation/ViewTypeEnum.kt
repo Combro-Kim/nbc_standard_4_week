@@ -1,9 +1,10 @@
-package com.example.nbc_standard_4_week.data
+package com.example.nbc_standard_4_week.presentation
 
-enum class ViewType(val viewType: Int) {
+enum class ViewTypeEnum(val viewType: Int) {
     CARD1(0),
     CARD2(1),
-    CARD3(2)
+    CARD3(2),
+    UNKNOWN(-1)
 }
 
 /*

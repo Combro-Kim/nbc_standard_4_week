@@ -1,26 +1,29 @@
-package com.example.nbc_standard_4_week.data
+package com.example.nbc_standard_4_week.data.database
 
-fun dataList(): MutableList<Data> {
-    return mutableListOf(
-        Data(
+import com.example.nbc_standard_4_week.presentation.ViewTypeEnum
+import com.example.nbc_standard_4_week.data.entity.DataEntity
+
+fun dataList(): List<DataEntity> {
+    return listOf(
+        DataEntity(
             id = 0,
-            type = ViewType.CARD1,
+            type = ViewTypeEnum.CARD1,
             tvName = "Anderson",
             num1 = "2423358195032412",
             YM = "21/24",
             price = 3100.30
         ),
-        Data(
+        DataEntity(
             id = 1,
-            type = ViewType.CARD2,
+            type = ViewTypeEnum.CARD2,
             tvName = "John",
             num1 = "1234567898765432",
             YM = "21/24",
             price = 2459.60
         ),
-        Data(
+        DataEntity(
             id = 2,
-            type = ViewType.CARD3,
+            type = ViewTypeEnum.CARD3,
             tvName = "Mash",
             num1 = "4564456478954125",
             YM = "21/24",
