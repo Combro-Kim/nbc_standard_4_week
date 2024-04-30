@@ -20,7 +20,7 @@ class MainViewModel(val dataSource: DataSource) : ViewModel() {
         _totalPrice.value = decimal.format(dataList().sumOf { it.price })
     }
 
-
+    //viewModel에서 데이터를 주기 위함
     val dataLiveData = dataSource.getDataList()
 
     // id
@@ -31,8 +31,8 @@ class MainViewModel(val dataSource: DataSource) : ViewModel() {
     }
 }
 
-//Factory [di를 사용하면 안써도 됨 - 튜터님]
 //todo 제네릭 공부
+//viewModel에 어떤 타입으로 와도 유효하다면 사용
 class MainViewModelFactory : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         //어떤 뷰의 타입이 와도 제네릭으로 받을 수 있음

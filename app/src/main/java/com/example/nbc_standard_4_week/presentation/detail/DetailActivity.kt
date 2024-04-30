@@ -25,6 +25,8 @@ class DetailActivity : AppCompatActivity() {
 
     private fun initView() { // todo ViewModel에서 받아오기
         val selectedItemId = intent.getIntExtra(SELECTED_DATA, -1)
+
+        //viewModel에서 데이터 받아오기
         val eachData = detailViewModel.getDataForId(selectedItemId)
         val decimal = DecimalFormat("#,##,###.00")
         binding.tvName.text = eachData?.tvName

@@ -26,9 +26,10 @@ class MainActivity : AppCompatActivity() {
         MainViewModelFactory()
     }
 
+    //ViewModel에서 받아오기 때문에 여기서 사용 안함
     //    private var dataSource = DataSource.getDataSource()
-    private lateinit var adapter: DataAdapter
 
+    private lateinit var adapter: DataAdapter
 
     //price
     private val tvDollar: TextView by lazy {
@@ -40,16 +41,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-
         showTotalPrice()
         recyclerViewDivider()
         initRecyclerView()
-
-
     }
 
     private fun initRecyclerView() {
-        val dataList = mainViewModel.dataLiveData //viewModel에서 데이터 가져오기 todo LiveData
+        val dataList = mainViewModel.dataLiveData
         adapter = DataAdapter(dataList)
         binding.recyclerView.adapter = adapter
         binding.recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
