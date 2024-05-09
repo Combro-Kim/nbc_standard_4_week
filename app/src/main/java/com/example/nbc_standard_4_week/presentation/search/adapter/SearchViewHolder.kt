@@ -1,6 +1,7 @@
 package com.example.nbc_standard_4_week.presentation.search.adapter
 
 import android.util.Log
+import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.nbc_standard_4_week.databinding.ItemUserBinding
@@ -15,6 +16,8 @@ class SearchViewHolder(private val binding: ItemUserBinding): RecyclerView.ViewH
             Glide.with(itemView.context)
                 .load(searchItem.avatarUrl)
                 .into(ivAvatarURL)
+
+//            ivHeart.visibility = if (searchItem.isLiked) View.VISIBLE else View.GONE
         }
     }
 }

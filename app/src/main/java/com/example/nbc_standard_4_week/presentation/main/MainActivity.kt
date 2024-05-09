@@ -2,7 +2,7 @@ package com.example.nbc_standard_4_week.presentation.main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.nbc_standard_4_week.MyStorageFragment
+import com.example.nbc_standard_4_week.presentation.myStorage.main.MyStorageFragment
 import com.example.nbc_standard_4_week.R
 import com.example.nbc_standard_4_week.databinding.ActivityMainBinding
 import com.example.nbc_standard_4_week.presentation.search.main.SearchFragment

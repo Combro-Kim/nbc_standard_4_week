@@ -1,9 +1,6 @@
 package com.example.nbc_standard_4_week.data.remote
 
 import com.example.nbc_standard_4_week.BuildConfig
-
-
-
 import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.Query
