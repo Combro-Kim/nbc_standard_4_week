@@ -1,55 +1,43 @@
 package com.example.nbc_standard_4_week.presentation.main
 
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.nbc_standard_4_week.presentation.myStorage.main.MyStorageFragment
 import com.example.nbc_standard_4_week.R
 import com.example.nbc_standard_4_week.databinding.ActivityMainBinding
 import com.example.nbc_standard_4_week.presentation.search.main.SearchFragment
+import com.example.nbc_standard_4_week.presentation.search.main.SearchViewModel
+import com.example.nbc_standard_4_week.presentation.search.main.SearchViewModelFactory
+import com.google.android.material.tabs.TabLayoutMediator
 
 
 class MainActivity : AppCompatActivity() {
     private val binding: ActivityMainBinding by lazy {
         ActivityMainBinding.inflate(layoutInflater)
     }
+    private val viewPagerAdapter by lazy {
+        ViewPagerAdapter(this)
+    }
+    private val searchViewModel by viewModels<SearchViewModel> {
+        SearchViewModelFactory()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        initFirstFragment()
-        setUpBottomNavigation()
+        initView()
+
     }
 
-    private fun initFirstFragment(){
-        //메인화면은 SearchFragment
-        supportFragmentManager.beginTransaction().apply {
-            replace(R.id.fragmentContainer, SearchFragment())
-            commit()
-        }
+    private fun initView() = with(binding) {
+        viewPager.adapter = viewPagerAdapter
+        //viewPager에 화면 수 세팅
+        viewPager.offscreenPageLimit = viewPagerAdapter.itemCount
+
+        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+            tab.setText(viewPagerAdapter.getTitle(position))
+        }.attach()
     }
-
-    private fun setUpBottomNavigation() {
-        binding.bottomNavigationView.setOnItemSelectedListener {
-            when (it.itemId) {
-                R.id.page_search -> {
-                    val searchFragment = SearchFragment()
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.fragmentContainer, searchFragment)
-                        .commit()
-                    true
-                }
-
-                R.id.page_myStorage -> {
-                    val myStorageFragment = MyStorageFragment()
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.fragmentContainer, myStorageFragment)
-                        .commit()
-                    true
-                }
-                else -> false
-            }
-        }
-    }
-
 
 }

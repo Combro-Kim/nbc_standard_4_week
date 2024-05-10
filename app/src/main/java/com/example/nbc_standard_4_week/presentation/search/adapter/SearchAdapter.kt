@@ -2,40 +2,30 @@ package com.example.nbc_standard_4_week.presentation.search.adapter
 
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
-import com.example.nbc_standard_4_week.databinding.ItemUserBinding
+import androidx.recyclerview.widget.RecyclerView
+import com.example.nbc_standard_4_week.databinding.ItemLinearUserBinding
 import com.example.nbc_standard_4_week.presentation.search.model.GitHubUserEntity
 
 
-class SearchAdapter : ListAdapter<GitHubUserEntity, SearchViewHolder>(DiffCallback){
+class SearchAdapter(private val onClick: (GitHubUserEntity) -> Unit) : RecyclerView.Adapter<SearchViewHolder>() {
 
-    interface ItemClick{
-        fun onClick(view: View, position: Int)
-    }
-    var itemClick : ItemClick? = null
+    var gitHubUserList = listOf<GitHubUserEntity>()
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder {
-        val binding = ItemUserBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return SearchViewHolder(binding)
+        val binding = ItemLinearUserBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return SearchViewHolder(binding,onClick)
+    }
+    override fun getItemCount(): Int {
+        return gitHubUserList.size
     }
 
     override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
-        val searchItem = getItem(position)
+        val searchItem = gitHubUserList[position]
         holder.bind(searchItem)
         holder.itemView.setOnClickListener {
-            itemClick?.onClick(it,position)
+            onClick(searchItem)
         }
-    }
-
-    object DiffCallback : DiffUtil.ItemCallback<GitHubUserEntity>() {
-        override fun areItemsTheSame(oldItem: GitHubUserEntity, newItem: GitHubUserEntity): Boolean {
-            return oldItem.id == newItem.id
-        }
-
-        override fun areContentsTheSame(oldItem: GitHubUserEntity, newItem: GitHubUserEntity): Boolean {
-            return oldItem == newItem
-        }
+        Log.d("id","$searchItem")
     }
 }
