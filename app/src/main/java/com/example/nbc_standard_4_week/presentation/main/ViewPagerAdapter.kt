@@ -3,8 +3,8 @@ package com.example.nbc_standard_4_week.presentation.main
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.nbc_standard_4_week.R
-import com.example.nbc_standard_4_week.presentation.myStorage.main.MyStorageFragment
-import com.example.nbc_standard_4_week.presentation.search.main.SearchFragment
+import com.example.nbc_standard_4_week.presentation.myStorage.MyStorageFragment
+import com.example.nbc_standard_4_week.presentation.search.SearchFragment
 
 class ViewPagerAdapter(mainActivity: MainActivity) : FragmentStateAdapter(mainActivity) {
 

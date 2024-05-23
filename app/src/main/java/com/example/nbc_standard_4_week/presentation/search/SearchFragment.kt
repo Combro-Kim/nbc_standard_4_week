@@ -1,4 +1,4 @@
-package com.example.nbc_standard_4_week.presentation.search.main
+package com.example.nbc_standard_4_week.presentation.search
 
 import android.content.Context
 import android.os.Bundle
@@ -12,11 +12,9 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.nbc_standard_4_week.data.SharedPreferencesManager
 import com.example.nbc_standard_4_week.databinding.FragmentSearchBinding
-import com.example.nbc_standard_4_week.presentation.myStorage.SharedViewModel
-import com.example.nbc_standard_4_week.presentation.search.adapter.SearchAdapter
+import com.example.nbc_standard_4_week.presentation.SharedViewModel
 
 
 class SearchFragment : Fragment() {
@@ -26,15 +24,20 @@ class SearchFragment : Fragment() {
 
     private var _binding: FragmentSearchBinding? = null
     private val binding get() = _binding!!
+
     private val viewModel: SearchViewModel by viewModels {
         SearchViewModelFactory()
     }
-//    private lateinit var adapter: SearchAdapter
+    private val sharedViewModel: SharedViewModel by activityViewModels()
+    //activityViewModels
+    //activityViewModels() 사용 시 Activity의 라이프사이클에 의해 생존주기 결정되며 액티비티내에서 같은 데이터 공유
 
     private val searchAdapter: SearchAdapter by lazy {
-        SearchAdapter {
-            viewModel.setFavoriteItem(it)
-        }
+        SearchAdapter (
+//            sharedViewModel.toggleFavorite(it)
+            onClick = { user -> sharedViewModel.setFavoriteList(user) },
+            isFavorite = { userId -> sharedViewModel.isFavorite(userId) }
+        )
     }
 
     private val etSearchUser: EditText by lazy {
@@ -44,9 +47,6 @@ class SearchFragment : Fragment() {
         binding.btnSearch
     }
 
-    //TODO activityViewModels
-    //activityViewModels() 사용 시 Activity의 라이프사이클에 의해 생존주기 결정되며 액티비티내에서 같은 데이터 공유
-    private val sharedViewModel: SharedViewModel by activityViewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentSearchBinding.inflate(inflater, container, false)
@@ -69,14 +69,14 @@ class SearchFragment : Fragment() {
     private fun initViewModel() {
         viewModel.getGithubUserList.observe(viewLifecycleOwner) { userList ->
             searchAdapter.gitHubUserList = userList
-            Log.d("dddddd","$userList")
             with(binding.searchRecyclerView) {
                 adapter = searchAdapter
             }
         }
-
-        viewModel.favoriteUserList.observe(viewLifecycleOwner) {
-            sharedViewModel.setFavoriteList(it)
+        //shared로 이동
+        sharedViewModel.favoriteLiveData.observe(viewLifecycleOwner) {
+//            sharedViewModel.setFavoriteList(it)
+            searchAdapter.notifyDataSetChanged()
         }
     }
 
@@ -87,7 +87,6 @@ class SearchFragment : Fragment() {
             SharedPreferencesManager.getSearchWord(requireContext(), searchWord) //검색어 저장
             hideKeyboard()
         }
-
     }
 
     //검색버튼 클릭 -> 키보드 내림

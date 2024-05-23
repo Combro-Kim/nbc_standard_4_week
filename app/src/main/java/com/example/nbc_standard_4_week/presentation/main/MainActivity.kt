@@ -3,12 +3,9 @@ package com.example.nbc_standard_4_week.presentation.main
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.example.nbc_standard_4_week.presentation.myStorage.main.MyStorageFragment
-import com.example.nbc_standard_4_week.R
 import com.example.nbc_standard_4_week.databinding.ActivityMainBinding
-import com.example.nbc_standard_4_week.presentation.search.main.SearchFragment
-import com.example.nbc_standard_4_week.presentation.search.main.SearchViewModel
-import com.example.nbc_standard_4_week.presentation.search.main.SearchViewModelFactory
+import com.example.nbc_standard_4_week.presentation.search.SearchViewModel
+import com.example.nbc_standard_4_week.presentation.search.SearchViewModelFactory
 import com.google.android.material.tabs.TabLayoutMediator
 
 

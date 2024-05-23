@@ -1,4 +1,4 @@
-package com.example.nbc_standard_4_week.presentation.search.repository
+package com.example.nbc_standard_4_week.repository
 
 import com.example.nbc_standard_4_week.presentation.search.model.GitHubUserListEntity
 
