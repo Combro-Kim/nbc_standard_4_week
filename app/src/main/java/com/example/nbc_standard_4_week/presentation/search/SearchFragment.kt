@@ -33,8 +33,7 @@ class SearchFragment : Fragment() {
     //activityViewModels() 사용 시 Activity의 라이프사이클에 의해 생존주기 결정되며 액티비티내에서 같은 데이터 공유
 
     private val searchAdapter: SearchAdapter by lazy {
-        SearchAdapter (
-//            sharedViewModel.toggleFavorite(it)
+        SearchAdapter(
             onClick = { user -> sharedViewModel.setFavoriteList(user) },
             isFavorite = { userId -> sharedViewModel.isFavorite(userId) }
         )
@@ -68,21 +67,17 @@ class SearchFragment : Fragment() {
 
     private fun initViewModel() {
         viewModel.getGithubUserList.observe(viewLifecycleOwner) { userList ->
-            searchAdapter.gitHubUserList = userList
-            with(binding.searchRecyclerView) {
-                adapter = searchAdapter
-            }
+            searchAdapter.submitList(userList)
+            binding.searchRecyclerView.adapter = searchAdapter
         }
-        //shared로 이동
         sharedViewModel.favoriteLiveData.observe(viewLifecycleOwner) {
-//            sharedViewModel.setFavoriteList(it)
             searchAdapter.notifyDataSetChanged()
         }
     }
 
     private fun setUpSearchClickListener() {
         btnSearch.setOnClickListener {
-            val searchWord = etSearchUser.text.toString() //검색어
+            val searchWord = etSearchUser.text.toString().replace(" ","") //검색어
             viewModel.searchGitHubUserList(searchWord) //
             SharedPreferencesManager.getSearchWord(requireContext(), searchWord) //검색어 저장
             hideKeyboard()

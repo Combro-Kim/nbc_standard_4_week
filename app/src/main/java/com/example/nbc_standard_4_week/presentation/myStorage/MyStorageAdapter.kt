@@ -41,10 +41,8 @@ class MyStorageAdapter(private val onClick: (GitHubUserEntity) -> Unit) :
                     .load(favoriteItem.avatarUrl)
                     .into(ivAvatarURL)
                 swLike.setOnClickListener {
-//                    if (searchItem.isLiked != swLike.isChecked) {
                     onClick(favoriteItem)
                 }
-//                }
             }
         }
     }

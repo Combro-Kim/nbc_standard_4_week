@@ -7,7 +7,7 @@
     tools:context=".presentation.myStorage.MyStorageFragment">
 
 <androidx.recyclerview.widget.RecyclerView
-    android:id="@+id/myStorageRecyclerView"
+    android:id="@+id/rvMyStorage"
     android:layout_width="match_parent"
     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
     android:layout_height="match_parent"/>

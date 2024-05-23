@@ -39,7 +39,7 @@ class MyStorageFragment : Fragment() {
         myStorageAdapter = MyStorageAdapter { user ->
             sharedViewModel.setFavoriteList(user)
         }
-        binding.myStorageRecyclerView.adapter = myStorageAdapter
+        binding.rvMyStorage.adapter = myStorageAdapter
     }
 
     private fun initViewModel() {
