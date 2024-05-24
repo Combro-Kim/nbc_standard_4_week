@@ -6,15 +6,15 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.nbc_standard_4_week.databinding.ItemLinearUserBinding
-import com.example.nbc_standard_4_week.presentation.search.model.GitHubUserEntity
+import com.example.nbc_standard_4_week.presentation.search.model.GitHubUser
 
 
 class SearchAdapter(
-    private val onClick: (GitHubUserEntity) -> Unit,
+    private val onClick: (GitHubUser) -> Unit,
     private val isFavorite: (Int) -> Boolean
 ) : RecyclerView.Adapter<SearchAdapter.SearchViewHolder>() {
 
-    private var gitHubUserList = listOf<GitHubUserEntity>()
+    private var gitHubUserList = listOf<GitHubUser>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder {
         val binding = ItemLinearUserBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -30,17 +30,17 @@ class SearchAdapter(
         holder.bind(searchItem, isFavorite)
     }
 
-    fun submitList(list: List<GitHubUserEntity>) {
+    fun submitList(list: List<GitHubUser>) {
         gitHubUserList = list
         notifyDataSetChanged()
     }
 
     class SearchViewHolder(
         private val binding: ItemLinearUserBinding,
-        private val onClick: (GitHubUserEntity) -> Unit
+        private val onClick: (GitHubUser) -> Unit
     ) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(searchItem: GitHubUserEntity, isFavorite: (Int) -> Boolean) {
+        fun bind(searchItem: GitHubUser, isFavorite: (Int) -> Boolean) {
             binding.apply {
                 swLike.isChecked = isFavorite(searchItem.id)
                 tvLogin.text = searchItem.login

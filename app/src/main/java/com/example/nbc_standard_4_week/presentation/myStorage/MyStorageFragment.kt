@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import com.example.nbc_standard_4_week.databinding.FragmentMyStorageBinding
 import com.example.nbc_standard_4_week.presentation.SharedViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MyStorageFragment : Fragment() {
     companion object {
         fun newInstance() = MyStorageFragment()

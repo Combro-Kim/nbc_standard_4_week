@@ -2,7 +2,6 @@ package com.example.nbc_standard_4_week.presentation.search
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,11 +11,13 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
-import com.example.nbc_standard_4_week.data.SharedPreferencesManager
+import com.example.nbc_standard_4_week.data.sharedpreferences.SharedPreferencesManager
 import com.example.nbc_standard_4_week.databinding.FragmentSearchBinding
 import com.example.nbc_standard_4_week.presentation.SharedViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
 
+@AndroidEntryPoint
 class SearchFragment : Fragment() {
     companion object {
         fun newInstance() = SearchFragment()
@@ -25,9 +26,7 @@ class SearchFragment : Fragment() {
     private var _binding: FragmentSearchBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: SearchViewModel by viewModels {
-        SearchViewModelFactory()
-    }
+    private val viewModel: SearchViewModel by viewModels()
     private val sharedViewModel: SharedViewModel by activityViewModels()
     //activityViewModels
     //activityViewModels() 사용 시 Activity의 라이프사이클에 의해 생존주기 결정되며 액티비티내에서 같은 데이터 공유

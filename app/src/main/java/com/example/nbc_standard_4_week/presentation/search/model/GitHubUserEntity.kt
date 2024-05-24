@@ -4,12 +4,12 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class GitHubUserListEntity(
-    val items: List<GitHubUserEntity>
+data class GitHubUserList(
+    val items: List<GitHubUser>
 ):Parcelable
 
 @Parcelize
-data class GitHubUserEntity(
+data class GitHubUser(
     val login: String,
     val id: Int,
     val htmlUrl: String,

@@ -3,16 +3,16 @@ package com.example.nbc_standard_4_week.presentation
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.nbc_standard_4_week.presentation.search.model.GitHubUserEntity
+import com.example.nbc_standard_4_week.presentation.search.model.GitHubUser
 
 //todo myStorage와 비교해서 switch on
 class SharedViewModel : ViewModel() {
-    private val _favoriteLiveData = MutableLiveData<List<GitHubUserEntity>>()
-    val favoriteLiveData: LiveData<List<GitHubUserEntity>> = _favoriteLiveData
+    private val _favoriteLiveData = MutableLiveData<List<GitHubUser>>()
+    val favoriteLiveData: LiveData<List<GitHubUser>> = _favoriteLiveData
 
-    private val favoriteUsers = mutableListOf<GitHubUserEntity>()
+    private val favoriteUsers = mutableListOf<GitHubUser>()
 
-    fun setFavoriteList(user: GitHubUserEntity) {
+    fun setFavoriteList(user: GitHubUser) {
         val index = favoriteUsers.indexOfFirst { it.id == user.id }
         if (index >= 0) {
             favoriteUsers.removeAt(index)

@@ -1,10 +1,7 @@
-package com.example.nbc_standard_4_week.data
+package com.example.nbc_standard_4_week.data.sharedpreferences
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.example.nbc_standard_4_week.presentation.search.model.GitHubUserEntity
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 
 object SharedPreferencesManager {
 
@@ -30,7 +27,7 @@ object SharedPreferencesManager {
     }
 
     //검색결과 저장
-//    fun getSearchResult(context: Context, searchList: List<GitHubUserEntity>) {
+//    fun getSearchResult(context: Context, searchList: List<GitHubUser>) {
 //        searchList.let {
 //            val jsonString = Gson().toJson(searchList)
 //            val editor = getSharedPreferences(context).edit()
@@ -39,8 +36,8 @@ object SharedPreferencesManager {
 //        }
 //    }
 //
-//    fun setSearchResult(context: Context): List<GitHubUserEntity>? {
+//    fun setSearchResult(context: Context): List<GitHubUser>? {
 //        val jsonString = getSharedPreferences(context).getString(SEARCH_LIST, null)
-//        return Gson().fromJson(jsonString, object : TypeToken<List<GitHubUserEntity>>() {}.type)
+//        return Gson().fromJson(jsonString, object : TypeToken<List<GitHubUser>>() {}.type)
 //    }
 }

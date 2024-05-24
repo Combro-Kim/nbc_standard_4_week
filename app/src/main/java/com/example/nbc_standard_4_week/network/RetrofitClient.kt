@@ -1,11 +1,12 @@
 package com.example.nbc_standard_4_week.network
 
-import com.example.nbc_standard_4_week.data.remote.SearchRemoteDataSource
+import com.example.nbc_standard_4_week.data.remote.remote.SearchRemoteDataSource
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 //retrofit 사용하기 위한 세팅
+/*
 object RetrofitClient {
     private const val BASE_URL = "https://api.github.com/"
 
@@ -23,5 +24,7 @@ object RetrofitClient {
     }
 
     //retrofit 객체와 interface(SearchRemoteDataSource) 연결
-    val searchGitHubUser: SearchRemoteDataSource by lazy { retrofit.create(SearchRemoteDataSource::class.java) }
-}
+    val searchGitHubUser: SearchRemoteDataSource by lazy {
+        retrofit.create(SearchRemoteDataSource::class.java)
+    }
+}*/

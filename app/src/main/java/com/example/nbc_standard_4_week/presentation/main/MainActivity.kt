@@ -1,14 +1,12 @@
 package com.example.nbc_standard_4_week.presentation.main
 
 import android.os.Bundle
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.nbc_standard_4_week.databinding.ActivityMainBinding
-import com.example.nbc_standard_4_week.presentation.search.SearchViewModel
-import com.example.nbc_standard_4_week.presentation.search.SearchViewModelFactory
 import com.google.android.material.tabs.TabLayoutMediator
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private val binding: ActivityMainBinding by lazy {
         ActivityMainBinding.inflate(layoutInflater)
@@ -16,15 +14,11 @@ class MainActivity : AppCompatActivity() {
     private val viewPagerAdapter by lazy {
         ViewPagerAdapter(this)
     }
-    private val searchViewModel by viewModels<SearchViewModel> {
-        SearchViewModelFactory()
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         initView()
-
     }
 
     private fun initView() = with(binding) {

@@ -1,4 +1,4 @@
-package com.example.nbc_standard_4_week.data.remote
+package com.example.nbc_standard_4_week.data.model
 
 import com.google.gson.annotations.SerializedName
 
